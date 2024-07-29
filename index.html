@@ -1,67 +1,81 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Character Counter</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Character Counter</title>
     <style>
-      body {
-        background-color: #f2f2f2;
-        font-family: Arial, sans-serif;
-      }
-      .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 95vh;
-      }
-      .content{
-        background-color: pink;
-        padding: 30px 300px;
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 10px solid palevioletred;
-      }
+        body {
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ad5261;
+        }
+        .counter-container {
+            background-color: #ffccd5;
+            border-radius: 10px;
+            padding: 20px 20px;
+            /* text-align: center; */
+            width: 700px;
+            height: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .counter-container h2{
+            font-size: 30px;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
 
-      h1 {
-        color: #333;
-      }
-      .txt{
-        color: white;
-    font-weight: 500;
-      }
-
-      textarea {
-        width: 300px;
-        height: 150px;
-        border: 1px solid #ccc;
-        padding: 5px;
-      }
-
-      p {
-        color: #666;
-      }
-
-      #counter {
-        font-weight: bold;
-        color: whitesmoke;
-      }
+        textarea {
+            width: 100%;
+            height: 100px;
+            border: 3px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .count-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 26px;
+            margin-top: 10px;
+        }
+        #myInput{
+            width: 100%;
+            height: 250px;
+            font-size: 20px;
+        }
+       
     </style>
-    <script>
-      function countCharacters() {
-        var input = document.getElementById("myInput");
-        var counter = document.getElementById("counter");
-        counter.innerHTML = input.value.length;
-      }
-    </script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="content">
-        <h1>Character Counter</h1>
-        <textarea id="myInput" placeholder="please write your text......" oninput="countCharacters()"></textarea>
-        <p class="txt">Character count: <span id="counter">0</span></p>
-      </div>
+</head>
+<body>
+
+<div class="counter-container">
+    <h2>Real-time Character Counter</h2>
+    <textarea id="myInput" oninput="countCharacters()" placeholder="Please write your text here..."></textarea>
+    <div class="count-display">
+        <span>Total Characters: <span id="charCount">0</span></span>
+        <span>Remaining: <span id="charRemaining">50</span></span>
     </div>
-  </body>
+</div>
+
+<script>
+    const maxChars = 50;
+    
+    function countCharacters() {
+        const input = document.getElementById("myInput");
+        const charCount = document.getElementById("charCount");
+        const charRemaining = document.getElementById("charRemaining");
+
+        const currentLength = input.value.length;
+        charCount.innerHTML = currentLength;
+        charRemaining.innerHTML = maxChars - currentLength;
+    }
+</script>
+
+</body>
 </html>
